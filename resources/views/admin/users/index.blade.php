@@ -61,7 +61,9 @@
                         </td>
                         <td>{{$user->created_at->diffForHumans()}}</td>
                         <td>{{$user->updated_at->diffForHumans()}}</td>
-                        <td><a class="btn btn-outline-info" href="">Edit</a></td>
+                        <td><a class="btn btn-outline-info" href="{{route('user.profile.show',$user->id)}}">Edit</a>
+                        </td>
+
 
                         <td><a onclick="return confirm('Are you sure?')" class="btn btn-outline-danger"
                                 href="{{route('user.destroy',$user->id)}}">Delete</a>

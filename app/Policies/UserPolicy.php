@@ -29,7 +29,8 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        //
+        return $user->userHasRole('Admin') ?: $user->id == $model->id;
+        // return $user->id == $model->id;
     }
 
     /**
@@ -41,6 +42,7 @@ class UserPolicy
     public function create(User $user)
     {
         //
+
     }
 
     /**

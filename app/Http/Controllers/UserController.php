@@ -42,7 +42,7 @@ class UserController extends Controller
             $user->update($input);
 
             back()->with('Updated', 'Post Has been Updated');
-            return redirect()->route('post.index');
+            return redirect()->route('users.index');
         }
     }
     public function destroy(User $user)
