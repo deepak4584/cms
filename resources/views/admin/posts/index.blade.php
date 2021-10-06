@@ -16,7 +16,7 @@
                 {{ session()->get('Created') }}
             </h4>
         </div>
-        @else
+        @elseif(session()->has('Updated'))
         <div class="alert alert-success">
             <h4>
                 {{ session()->get('Updated') }}
@@ -67,6 +67,8 @@
                             <td>{{$post->updated_at->diffForHumans()}}</td>
 
                             </form>
+                            @can('view',$post)
+
                             <td><a class="btn btn-info" href="{{route('post.edit',$post->id)}}">Edit</a></td>
                             <td>
                                 <form action="{{route('post.destroy',$post->id)}}" method="POST">
@@ -77,6 +79,8 @@
                                 </form>
                             </td>
                         </tr>
+                        @endcan
+
                         @endforeach
 
                     </tbody>
@@ -91,6 +95,8 @@
     <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- Page level custom scripts -->
+    <script src="{{asset('js/demo/chart-bar-demo.js')}}"></script>
+    <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
     <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
     @endsection
 </x-admin-master>

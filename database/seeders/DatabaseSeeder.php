@@ -2,7 +2,11 @@
 
 namespace Database\Seeders;
 
+use Carbon\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\factories;
+use App\Http\models\User;
+use App\Http\models\Post;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +17,5 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
     }
 }

@@ -1,4 +1,5 @@
 <x-admin-master>
+
     @section('content')
     <h1>Edit a Post</h1>
     <form action="{{route('post.update',$post->id)}}" method="post" enctype="multipart/form-data">
@@ -23,7 +24,7 @@
         <div class="form-group">
             <textarea name="body" id="body" cols="100" rows="10">{{$post['body']}}</textarea>
         </div>
-        <button class="btn btn-info" type="submit" name="submit">Submit</button>
+        <input class="btn btn-info" type="submit">
     </form>
     @endsection
 </x-admin-master>
