@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Role;
 use Auth;
 
 class UserController extends Controller
@@ -16,7 +17,13 @@ class UserController extends Controller
     }
     public function show(User $user)
     {
-        return view('admin.users.profile', ['user' => $user]);
+
+        return view('admin.users.profile', [
+
+            'user' => $user,
+            'roles' => Role::all()
+
+        ]);
     }
     public function update(User $user, Request $request)
     {
@@ -50,6 +57,16 @@ class UserController extends Controller
         $user->delete();
         return redirect()->back()->with('message', 'User Has been Deleted');
 
+        return back();
+    }
+    public function attach(User $user)
+    {
+        $user->roles()->attach(request('role'));
+        return back();
+    }
+    public function detach(User $user)
+    {
+        $user->roles()->detach(request('role'));
         return back();
     }
 }
