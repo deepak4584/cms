@@ -60,8 +60,8 @@
                             <td>{{$post->user->name}}</td>
                             <td> {{$post['title']}}</td>
                             <td>
-                                <img height="100px" class="card-img-top"
-                                    src="{{asset('images/' . $post['post_image'])}}" alt="Card image cap">
+                                <img height="100px" class="card-img-top" src="{{asset('images/'. $post['post_image'])}}"
+                                    alt="Card image cap">
                             </td>
                             <td>{{$post->created_at->diffForHumans()}}</td>
                             <td>{{$post->updated_at->diffForHumans()}}</td>

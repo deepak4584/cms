@@ -106,7 +106,7 @@
                                         <form action="{{route('users.role.attach',$user)}}" method="post">
                                             @method('PUT')
                                             @csrf
-                                            <input type="text" name="role" value="{{$role->id}}">
+                                            <input type="hidden" name="role" value="{{$role->id}}">
                                             <button type="submit" class="btn btn-success button-primary"
                                                 @if($user->roles->contains($role))
                                                 disabled
@@ -120,7 +120,7 @@
                                         <form action="{{route('users.role.detach',$user)}}" method="post">
                                             @method('PUT')
                                             @csrf
-                                            <input type="text" name="role" value="{{$role->id}}">
+                                            <input type="hidden" name="role" value="{{$role->id}}">
                                             <button type="submit" class="btn btn-danger"
                                                 @if(!$user->roles->contains($role))
                                                 disabled
@@ -130,7 +130,6 @@
                                     </td>
                                 </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>

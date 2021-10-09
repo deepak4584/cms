@@ -7,4 +7,8 @@ use Illuminate\Http\Request;
 class PermissionController extends Controller
 {
     //
+    public function index()
+    {
+        return view('components.admin.permissions.index');
+    }
 }
