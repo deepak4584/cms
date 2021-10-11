@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Permission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Post;
+use App\Models\User;
 use App\Models\Role;
+use Auth;
 
 class RoleController extends Controller
 {
@@ -19,11 +23,11 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
+
         return view('components.admin.roles.edit', [
 
             'role' => $role,
-            'permissions' => Permission::all()
-
+            'permissions' => Permission::all(),
         ]);
     }
 
@@ -53,6 +57,10 @@ class RoleController extends Controller
 
         // return redirect()->back()->with('updated', 'Post Has been Updated');
         return back();
+    }
+    public function attach_permission(Role $role)
+    {
+        $role->permissions()->attach(request('permission'));
     }
     public function destroy(Role $role)
     {

@@ -25,8 +25,6 @@
     <div class="row">
         <div class="col-lg-12">
             @if ($permissions->isNotEmpty())
-
-
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Permissions</h6>
@@ -41,7 +39,6 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Slug</th>
-                                    <!-- <th>Edit</th> -->
                                     <th>Delete</th>
                                 </tr>
                             </thead>
@@ -51,32 +48,28 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Slug</th>
-                                    <!-- <th>Edit</th> -->
                                     <th>Delete</th>
 
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($permissions as $permission )
+                                @foreach ($permissions as $permission)
                                 <tr>
 
-                                    <td>
-                                        <input type="checkbox" @foreach ($role->permissions as $role_Permission)
-                                        @if ($role_Permission->slug == $permission->slug)
-                                        checked
-                                        @endif
-                                        @endforeach
-
-                                        >
-                                    </td>
-
-
-
-                                    <td><input type="checkbox"></td>
                                     <td>{{$permission['id']}}</td>
                                     <td>{{$permission['name']}}</td>
                                     <td>{{$permission['slug']}}</td>
-                                    <td><button class="btn btn-danger">Delete</button></td>
+                                    <td>
+                                    <td>
+                                        <form action="{{route('role.permission.attach',$role)}}" method="post">
+                                            @method('PUT')
+                                            @csrf
+                                            <input type="text" name="permission" value="{{$permission->id}}">
+
+                                        </form>
+
+                                    </td>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -96,9 +89,7 @@
             <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
             <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
             @endif
-
         </div>
-    </div>
     </div>
 
     @endsection

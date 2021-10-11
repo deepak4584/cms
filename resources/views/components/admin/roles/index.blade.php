@@ -73,8 +73,6 @@
                                     <td><a href="{{route('roles.edit', $role->id)}}">{{$role['name']}}</a>
                                     </td>
                                     <td>{{$role['slug']}}</td>
-                                    </form>
-
                                     <td>
                                         <form action="{{route('roles.destroy',$role->id)}}" method="POST">
                                             @csrf
@@ -82,6 +80,7 @@
                                             <button onclick="return confirm('Are you sure?')" class="btn btn-danger"
                                                 type="submit">Delete</button>
                                         </form>
+                                    </td>
                                 </tr>
                                 @endforeach
 
