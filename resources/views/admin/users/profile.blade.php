@@ -97,7 +97,6 @@
                                         checked
                                         @endif
                                         @endforeach
-
                                         ></td>
                                     <td>{{$role['id']}}</td>
                                     <td>{{$role['name']}}</td>

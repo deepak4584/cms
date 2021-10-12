@@ -5,11 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Permission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\Post;
-use App\Models\User;
 use App\Models\Role;
-use Auth;
 
 class RoleController extends Controller
 {
@@ -51,8 +47,6 @@ class RoleController extends Controller
         } else {
             session()->flash('updated', 'Nothing Has been Updated ' . request('name'));
         }
-
-
         // return redirect()->back()->with('updated', 'Post Has been Updated');
         return back();
     }

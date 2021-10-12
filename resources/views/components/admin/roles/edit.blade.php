@@ -35,7 +35,7 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <!-- <th>Operation</th> -->
+                                    <th>Operation</th>
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Slug</th>
@@ -44,7 +44,7 @@
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <!-- <th>Operation</th> -->
+                                    <th>Operation</th>
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Slug</th>
@@ -54,12 +54,13 @@
                             </tfoot>
                             <tbody>
                                 @foreach ($permissions as $permission)
-                                @php
-
-                                $disable = (!empty($role->permissions) &&
-                                !$role->permissions->contains($permission))?"disabled" :"";
-                                @endphp
                                 <tr>
+                                    <td><input type="checkbox" @foreach ($role->Permissions as $role_permission)
+                                        @if ($role_permission->slug == $permission->slug)
+                                        checked
+                                        @endif
+                                        @endforeach
+                                        ></td>
                                     <td>{{$permission['id']}}</td>
                                     <td>{{$permission['name']}}</td>
                                     <td>{{$permission['slug']}}</td>
@@ -69,7 +70,7 @@
                                             @method('PUT')
                                             @csrf
                                             <input type="hidden" name="permission" value="{{$permission->id}}">
-                                            <button type="submit" class="btn btn-danger" {{$disable}}>
+                                            <button type="submit" class="btn btn-danger">
                                                 Delete</button>
                                         </form>
 
