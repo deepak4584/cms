@@ -35,7 +35,7 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Operation</th>
+                                    <!-- <th>Operation</th> -->
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Slug</th>
@@ -44,7 +44,7 @@
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Operation</th>
+                                    <!-- <th>Operation</th> -->
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Slug</th>
@@ -54,22 +54,27 @@
                             </tfoot>
                             <tbody>
                                 @foreach ($permissions as $permission)
-                                <tr>
+                                @php
 
+                                $disable = (!empty($role->permissions) &&
+                                !$role->permissions->contains($permission))?"disabled" :"";
+                                @endphp
+                                <tr>
                                     <td>{{$permission['id']}}</td>
                                     <td>{{$permission['name']}}</td>
                                     <td>{{$permission['slug']}}</td>
-                                    <td>
+
                                     <td>
                                         <form action="{{route('role.permission.attach',$role)}}" method="post">
                                             @method('PUT')
                                             @csrf
-                                            <input type="text" name="permission" value="{{$permission->id}}">
-
+                                            <input type="hidden" name="permission" value="{{$permission->id}}">
+                                            <button type="submit" class="btn btn-danger" {{$disable}}>
+                                                Delete</button>
                                         </form>
 
                                     </td>
-                                    </td>
+
                                 </tr>
                                 @endforeach
                             </tbody>

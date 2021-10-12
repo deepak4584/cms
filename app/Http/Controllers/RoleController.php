@@ -23,9 +23,7 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-
         return view('components.admin.roles.edit', [
-
             'role' => $role,
             'permissions' => Permission::all(),
         ]);
