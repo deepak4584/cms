@@ -9,7 +9,7 @@
     @endif
     <div class="row">
         <div class="col-sm-6">
-            <h1>edit page:{{$role->name}}</h1>
+            <h1>Edit page:{{$role->name}}</h1>
             <form method="post" action="{{route('roles.update',$role->id)}}">
                 @csrf
                 @method('PUT')
@@ -55,7 +55,7 @@
                             <tbody>
                                 @foreach ($permissions as $permission)
                                 <tr>
-                                    <td><input type="checkbox" @foreach ($role->Permissions as $role_permission)
+                                     <td><input type="checkbox" @foreach ($role->permissions as $role_permission)
                                         @if ($role_permission->slug == $permission->slug)
                                         checked
                                         @endif
@@ -70,11 +70,16 @@
                                             @method('PUT')
                                             @csrf
                                             <input type="hidden" name="permission" value="{{$permission->id}}">
-                                            <button type="submit" class="btn btn-danger">
-                                                Delete</button>
+                                            <button type="submit" class="btn btn-success button-primary"
+                                                @if($role->permissions->contains($permission))
+                                                disabled
+                                                @endif
+                                                >
+                                                Attach</button>
                                         </form>
 
                                     </td>
+                                   
 
                                 </tr>
                                 @endforeach

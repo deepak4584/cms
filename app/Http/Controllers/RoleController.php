@@ -19,9 +19,11 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
+    
+
         return view('components.admin.roles.edit', [
             'role' => $role,
-            'permissions' => Permission::all(),
+            'permissions' => Permission::all()
         ]);
     }
 
@@ -53,7 +55,10 @@ class RoleController extends Controller
     public function attach_permission(Role $role)
     {
         $role->permissions()->attach(request('permission'));
+        return  back();
+
     }
+  
     public function destroy(Role $role)
     {
         $role->delete();
