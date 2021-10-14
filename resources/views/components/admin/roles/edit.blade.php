@@ -1,9 +1,9 @@
 <x-admin-master>
     @section('content')
-    @if(session()->has('updated'))
+    @if(session()->has('role-updated'))
     <div class="alert alert-success">
         <h4>
-            {{ session()->get('updated') }}
+            {{ session()->get('role-updated') }}
         </h4>
     </div>
     @endif
@@ -39,8 +39,8 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Slug</th>
-                                    <th>Delete</th>
-                                </tr>
+                                    <th>Attach</th>
+                                    <th>Detach</th>                                </tr>
                             </thead>
                             <tfoot>
                                 <tr>
@@ -48,7 +48,8 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Slug</th>
-                                    <th>Delete</th>
+                                    <th>Attach</th>
+                                    <th>Detach</th>
 
                                 </tr>
                             </tfoot>
@@ -77,9 +78,21 @@
                                                 >
                                                 Attach</button>
                                         </form>
-
                                     </td>
-                                   
+                                    <td>
+                                        <form action="{{route('role.permission.detach',$role)}}" method="post">
+                                            @method('PUT')
+                                            @csrf
+                                            <input type="hidden" name="permission" value="{{$permission->id}}">
+                                            <button type="submit" class="btn btn-danger"
+                                                @if(!$role->permissions->contains($permission))
+                                                disabled
+                                                @endif
+                                                >
+                                                Detach</button>
+                                        </form>
+                                    </td>
+                                  
 
                                 </tr>
                                 @endforeach

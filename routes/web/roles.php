@@ -10,3 +10,4 @@ Route::get('/roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.e
 
 Route::put('/roles/{role}/update', [RoleController::class, 'update'])->name('roles.update');
 Route::put('/roles/{role}/attach', [RoleController::class, 'attach_permission'])->name('role.permission.attach');
+Route::put('/roles/{role}/detach', [RoleController::class, 'detach_permission'])->name('role.permission.detach');

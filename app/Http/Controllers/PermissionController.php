@@ -33,7 +33,20 @@ class PermissionController extends Controller
     {
         return view('components.admin.permissions.edit', ['permission' => $permission]);
     }
+public function update_permission(Permission $permission)
 
+    {
+        $permission->name = Str::ucfirst(request('name'));
+        $permission->slug = Str::of(request('name'))->slug('-');
+        if ($permission->isDirty('name')) {
+            session()->flash('updated', 'Permission Has been Updated ' . request('name'));
+            $permission->save();
+        
+        } else {
+            session()->flash('updated', 'Nothing Has been Updated ' . request('name'));
+        }
+         return back();
+    }
     public function destroy(Permission $permission)
     {
         $permission->delete();

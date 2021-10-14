@@ -44,10 +44,10 @@ class RoleController extends Controller
         $role->name = Str::ucfirst(request('name'));
         $role->slug = Str::of(request('name'))->slug('-');
         if ($role->isDirty('name')) {
-            session()->flash('updated', 'Role Has been Updated ' . request('name'));
+            session()->flash('role-updated', 'Role Has been Updated ' . request('name'));
             $role->save();
         } else {
-            session()->flash('updated', 'Nothing Has been Updated ' . request('name'));
+            session()->flash('role-updated', 'Nothing Has been Updated ' . request('name'));
         }
         // return redirect()->back()->with('updated', 'Post Has been Updated');
         return back();
@@ -55,6 +55,12 @@ class RoleController extends Controller
     public function attach_permission(Role $role)
     {
         $role->permissions()->attach(request('permission'));
+        return  back();
+
+    }
+    public function detach_permission(Role $role)
+    {
+        $role->permissions()->detach(request('permission'));
         return  back();
 
     }
