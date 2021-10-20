@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
+use App\Models\Role;
 
 Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
 Route::post('/permissions', [PermissionController::class, 'store'])->name('permissions.store');

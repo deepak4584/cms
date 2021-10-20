@@ -8,6 +8,13 @@ use Illuminate\Support\Str;
 
 class PermissionController extends Controller
 {
+    public function __construct()
+{
+
+    $this->middleware("auth");
+
+}
+
     //
     public function index()
     {
@@ -33,11 +40,13 @@ class PermissionController extends Controller
     {
         return view('components.admin.permissions.edit', ['permission' => $permission]);
     }
-public function update_permission(Permission $permission)
+
+    public function update_permission(Permission $permission)
 
     {
         $permission->name = Str::ucfirst(request('name'));
         $permission->slug = Str::of(request('name'))->slug('-');
+        
         if ($permission->isDirty('name')) {
             session()->flash('updated', 'Permission Has been Updated ' . request('name'));
             $permission->save();

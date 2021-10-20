@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class PostController extends Controller
 {
+    public function __construct()
+{
+
+    $this->middleware("auth");
+
+}
+
     public function index()
     {
         $posts = Post::with('user')->where('user_id', '=', Auth::user()->id)->get();

@@ -9,6 +9,13 @@ use App\Models\Role;
 
 class RoleController extends Controller
 {
+    public function __construct()
+{
+
+    $this->middleware("auth");
+
+}
+
     public function index()
     {
         return view('components.admin.roles.index', [
@@ -68,7 +75,7 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
-        return redirect()->back()->with('message', 'Post Has been Deleted');
+        return redirect()->back()->with('message', 'Role Has been Deleted');
         return  back();
     }
 }
